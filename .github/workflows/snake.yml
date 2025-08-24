@@ -1,6 +1,4 @@
 name: GitHub Snake Game
-name: GitHub Snake Game
-
 on:
   schedule:
     - cron: "0 0 * * *"
