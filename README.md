@@ -1,32 +1,61 @@
-
-### Hi there 👋
-
-# I am Praveen
-
 <div align="center">
-  
-  ![Animated Hello](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&color=2AA889&center=true&vCenter=true&width=500&lines=Welcome+to+my+GitHub+profile!;I'm+a+passionate+developer;I+love+open+source;Nice+to+meet+you+%F0%9F%91%8B)
+
+  ![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=3000&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=Welcome+to+my+GitHub+Profile!;I'm+a+Data+Science+and+ML+Enthusiast;Skilled+in+Python%2C+R%2C+and+SQL;Exploring+Machine+Learning+%26+AI;Web+Development+with+React+%26+Flask;Data+Visualization+with+Tableau+%26+PowerBI)
 
 </div>
 
 
 
-<!-- About Me Section with Animation -->
-## 🧑‍💻 About Me
+Hi, I'm **Praveen**!  
+I'm passionate about **Data Science, Web Development, and Machine Learning**.  
+I enjoy building real-world projects, solving problems with code, and constantly learning new technologies.  
 
+### 🚀 What I Do
+- 📊 Data Science & Analytics – Data cleaning, visualization, and predictive modeling.  
+- 🌐 Web Development – Building responsive websites and applications using HTML, CSS, JavaScript and Flask.  
+- 🤖 Machine Learning – Developing models for classification, prediction, and real-time analytics.  
+
+### 🎯 Current Goals
+- Sharpen my **Python, SQL, and R** skills.  
+- Work on **end-to-end portfolio projects** (Data Science + Fullstack).  
+- Contribute to **open-source** projects.  
+
+### ⚡ Fun Facts
+- 💡 I love solving logical puzzles and exploring AI/ML use cases.  
+- 🎵 Music & tech podcasts keep me inspired.  
+- 🌱 Always learning something new every day!  
+
+✨ Check out my repositories and feel free to connect or collaborate!
 
 
   
 ## 🛠️ Technologies & Tools
 
-<!-- Animated icons for technologies -->
 <div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" height="40"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40" height="40"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="40" height="40"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="40" height="40"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="40" height="40"/>
+  <!-- Languages -->
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" title="Python" alt="Python" width="50" height="50" style="margin:10px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" title="R" alt="R" width="50" height="50" style="margin:10px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" title="SQL" alt="SQL" width="50" height="50" style="margin:10px;" />
+  
+  <!-- Web Development -->
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="HTML5" alt="HTML5" width="50" height="50" style="margin:10px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="CSS3" alt="CSS3" width="50" height="50" style="margin:10px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="50" height="50" style="margin:10px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React" alt="React" width="50" height="50" style="margin:10px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" title="Flask" alt="Flask" width="50" height="50" style="margin:10px;" />
+  
+  <!-- Data Science Libraries -->
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" title="NumPy" alt="NumPy" width="50" height="50" style="margin:10px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" title="Pandas" alt="Pandas" width="50" height="50" style="margin:10px;" />
+  <img src="https://img.icons8.com/color/48/matplotlib.png" title="Matplotlib" alt="Matplotlib" width="50" height="50" style="margin:10px;"/>
+  <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" title="Seaborn" alt="Seaborn" width="80" height="40" style="margin:10px;"/>
+  <img src="https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png" title="Scikit-Learn" alt="Scikit-Learn" width="80" height="40" style="margin:10px;"/>
+  
+  <!-- Visualization Tools -->
+  <img src="https://img.icons8.com/color/48/tableau-software.png" title="Tableau" alt="Tableau" width="50" height="50" style="margin:10px;"/>
+  <img src="https://img.icons8.com/color/48/power-bi.png" title="Power BI" alt="Power BI" width="50" height="50" style="margin:10px;"/>
 </div>
+
 
 ## 📈 GitHub Stats
 
@@ -39,12 +68,9 @@
 
 
 ## 📫 How to reach me
+- Email: saikatta07@gmail.com
 
-- LinkedIn: [Your Profile](https://linkedin.com/in/your-profile)
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
-- Email: your.email@example.com
-
-⭐️ From [your-username](https://github.com/your-username)
+⭐️ From [saipraveen13](https://github.com/saipraveen13/)
 
 
 <!-- Snake Game Animation -->
