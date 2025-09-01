@@ -23,6 +23,9 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Create dist directory
+        run: mkdir -p dist
+
       - name: Generate Multiple Snake Animations
         uses: Platane/snk@v3
         with:
