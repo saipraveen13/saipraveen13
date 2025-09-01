@@ -37,7 +37,6 @@ jobs:
           import random
           from PIL import Image, ImageDraw
           import os
-          import numpy as np
 
           # Create dist directory if it doesn't exist
           os.makedirs('dist', exist_ok=True)
@@ -128,7 +127,10 @@ jobs:
                       noise = random.uniform(0.8, 1.2)
                       
                       # Calculate final bar height
-                      bar_height = (base_height * contribution_mod * noise) * (height // 2 - 20)
+                      bar_height = int((base_height * contribution_mod * noise) * (height // 2 - 20))
+                      
+                      # Ensure bar height is within bounds
+                      bar_height = max(5, min(bar_height, height//2 - 25))
                       
                       # Choose color based on band and height
                       color_idx = (band + frame) % len(colors)
@@ -139,21 +141,34 @@ jobs:
                       y_top = height // 2 - bar_height
                       y_bottom = height // 2 + bar_height
                       
+                      # Ensure coordinates are within bounds
+                      x1 = max(0, x - bar_width//2 + 2)
+                      x2 = min(width, x + bar_width//2 - 2)
+                      y1 = max(0, y_top)
+                      y2 = min(height, y_bottom)
+                      
                       # Draw the main bar
-                      draw.rectangle([x - bar_width//2 + 2, y_top, x + bar_width//2 - 2, y_bottom], fill=color)
+                      draw.rectangle([x1, y1, x2, y2], fill=color)
                       
                       # Add 3D effect with highlights
                       highlight_color = tuple(min(255, c + 40) for c in color)
-                      draw.rectangle([x - bar_width//2 + 2, y_top, x - bar_width//2 + 4, y_bottom], fill=highlight_color)
+                      draw.rectangle([x1, y1, min(width, x1 + 2), y2], fill=highlight_color)
                       
-                      # Add glow effect at the top (fixed to use integer)
+                      # Add glow effect at the top
                       if bar_height > 20:
-                          glow_size = int(min(15, bar_height // 4))
-                          for i in range(glow_size):
-                              alpha = 150 - (i * 150 // glow_size)
-                              glow_color = tuple(min(255, c + (alpha // 6)) for c in color)
-                              radius = glow_size//2 - i
-                              draw.ellipse([x - radius, y_top - radius, x + radius, y_top + radius], fill=glow_color)
+                          glow_size = min(15, bar_height // 4)
+                          for i in range(int(glow_size)):
+                              radius = max(1, glow_size - i)
+                              # Ensure coordinates are valid
+                              x_start = max(0, x - radius)
+                              y_start = max(0, y_top - radius)
+                              x_end = min(width, x + radius)
+                              y_end = min(height, y_top + radius)
+                              
+                              if x_start < x_end and y_start < y_end:  # Only draw if coordinates are valid
+                                  alpha = 150 - (i * 150 // glow_size)
+                                  glow_color = tuple(min(255, c + (alpha // 6)) for c in color)
+                                  draw.ellipse([x_start, y_start, x_end, y_end], fill=glow_color)
                   
                   # Add floating frequency circles
                   for _ in range(15):
@@ -161,7 +176,15 @@ jobs:
                       y = random.randint(0, height)
                       size = random.randint(2, 8)
                       color = random.choice(colors)
-                      draw.ellipse([x-size, y-size, x+size, y+size], fill=color)
+                      
+                      # Ensure coordinates are valid
+                      x1 = max(0, x - size)
+                      y1 = max(0, y - size)
+                      x2 = min(width, x + size)
+                      y2 = min(height, y + size)
+                      
+                      if x1 < x2 and y1 < y2:  # Only draw if coordinates are valid
+                          draw.ellipse([x1, y1, x2, y2], fill=color)
                   
                   # Add animated sound waves
                   for wave in range(3):
@@ -169,14 +192,19 @@ jobs:
                       wave_center_x = random.randint(width//4, 3*width//4)
                       wave_center_y = random.randint(height//4, 3*height//4)
                       
-                      for r in range(wave_radius, wave_radius + 15, 3):
-                          alpha = 150 - (r - wave_radius) * 10
-                          if alpha > 0:
-                              wave_color = colors[(wave + frame) % len(colors)]
-                              wave_color = tuple(int(c * alpha/150) for c in wave_color)
-                              draw.ellipse([wave_center_x - r, wave_center_y - r, 
-                                           wave_center_x + r, wave_center_y + r], 
-                                           outline=wave_color, width=1)
+                      for r in range(int(wave_radius), int(wave_radius) + 15, 3):
+                          # Ensure coordinates are valid
+                          x1 = max(0, wave_center_x - r)
+                          y1 = max(0, wave_center_y - r)
+                          x2 = min(width, wave_center_x + r)
+                          y2 = min(height, wave_center_y + r)
+                          
+                          if x1 < x2 and y1 < y2:  # Only draw if coordinates are valid
+                              alpha = 150 - (r - wave_radius) * 10
+                              if alpha > 0:
+                                  wave_color = colors[(wave + frame) % len(colors)]
+                                  wave_color = tuple(int(c * alpha/150) for c in wave_color)
+                                  draw.ellipse([x1, y1, x2, y2], outline=wave_color, width=1)
                   
                   # Add bouncing balls
                   for i in range(5):
@@ -184,9 +212,15 @@ jobs:
                       ball_y = height // 2 + math.sin(time + i) * (height // 4)
                       ball_size = 8 + i * 2
                       ball_color = colors[(i + frame) % len(colors)]
-                      draw.ellipse([ball_x - ball_size, ball_y - ball_size, 
-                                   ball_x + ball_size, ball_y + ball_size], 
-                                   fill=ball_color)
+                      
+                      # Ensure coordinates are valid
+                      x1 = max(0, ball_x - ball_size)
+                      y1 = max(0, ball_y - ball_size)
+                      x2 = min(width, ball_x + ball_size)
+                      y2 = min(height, ball_y + ball_size)
+                      
+                      if x1 < x2 and y1 < y2:  # Only draw if coordinates are valid
+                          draw.ellipse([x1, y1, x2, y2], fill=ball_color)
                   
                   # Add title with contribution count
                   total_contributions = sum(count for date, count in contributions)
