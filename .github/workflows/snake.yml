@@ -1,4 +1,4 @@
-name: GitHub Fireworks Animation
+name: GitHub Music Waves Animation
 on:
   schedule:
     - cron: "0 0 * * *"  # Runs daily at midnight UTC
@@ -27,16 +27,17 @@ jobs:
         run: mkdir -p dist
 
       - name: Install dependencies
-        run: pip install requests pillow
+        run: pip install requests pillow numpy
 
-      - name: Create fireworks animation
+      - name: Create music waves animation
         run: |
-          cat > generate_fireworks.py << 'EOF'
+          cat > generate_music_waves.py << 'EOF'
           import requests
           import math
           import random
           from PIL import Image, ImageDraw
           import os
+          import numpy as np
 
           # Create dist directory if it doesn't exist
           os.makedirs('dist', exist_ok=True)
@@ -56,64 +57,107 @@ jobs:
                       count = int(count_part.split('"')[0])
                       date_part = line.split('data-date="')[1]
                       date = date_part.split('"')[0]
-                      if count > 0:
-                          contributions.append((date, count))
+                      contributions.append((date, count))
                   except:
                       continue
 
           # If no contributions found, use some defaults
           if not contributions:
-              contributions = [('2023-01-01', 5), ('2023-01-02', 3), ('2023-01-03', 8)]
+              contributions = [('2023-01-01', 5), ('2023-01-02', 3), ('2023-01-03', 8),
+                              ('2023-01-04', 2), ('2023-01-05', 6), ('2023-01-06', 9)]
 
-          # Create fireworks animation
-          width, height = 800, 200
-          frames = 30
+          # Create music waves animation
+          width, height = 800, 300
+          frames = 40
           gif_frames = []
+          
+          # Colors for different frequency bands
+          colors = [
+              (255, 100, 100),  # Red - bass
+              (255, 180, 50),   # Orange
+              (255, 255, 100),  # Yellow
+              (100, 255, 100),  # Green
+              (100, 200, 255),  # Blue
+              (180, 100, 255),  # Purple - treble
+          ]
 
+          # Convert contributions to audio data
+          audio_data = [min(10, count) for date, count in contributions[:100]]  # Limit to 100 points
+          if len(audio_data) < 10:
+              audio_data = audio_data * (10 // len(audio_data) + 1)
+          
+          # Create frames
           for frame in range(frames):
               img = Image.new('RGB', (width, height), color=(13, 17, 23))  # GitHub dark bg
               draw = ImageDraw.Draw(img)
               
-              # Draw contribution grid in the background (faint)
-              for i, (date, count) in enumerate(contributions[:100]):  # Limit to 100 most recent
-                  x = (i % 20) * 40 + 20
-                  y = (i // 20) * 40 + 20
-                  size = min(8, 2 + count // 5)
-                  color = (45, 125, 250)  # Blue
+              # Draw background grid (music staff lines)
+              for i in range(5):
+                  y = height // 2 - 40 + i * 20
+                  draw.line([(0, y), (width, y)], fill=(40, 40, 50), width=1)
+              
+              # Draw time markers
+              for x in range(0, width, 50):
+                  draw.line([(x, height//2 - 50), (x, height//2 + 50)], fill=(50, 50, 60), width=1)
+              
+              # Draw center line
+              draw.line([(0, height//2), (width, height//2)], fill=(80, 80, 100), width=2)
+              
+              # Create music waves
+              time = frame * 0.2
+              
+              # Draw multiple frequency bands
+              for band in range(6):
+                  points = []
+                  color = colors[band]
+                  
+                  # Different frequencies for each band
+                  freq = 0.5 + band * 0.3
+                  amplitude = 15 + band * 5
+                  
+                  for x in range(0, width, 4):
+                      # Base wave (sine wave)
+                      y_base = math.sin(x * 0.02 * freq + time) * amplitude
+                      
+                      # Add contribution-based modulation
+                      data_idx = int((x / width) * len(audio_data)) % len(audio_data)
+                      modulation = audio_data[data_idx] * 2
+                      
+                      # Add some randomness for organic feel
+                      noise = random.uniform(-3, 3)
+                      
+                      y = height // 2 + y_base + modulation + noise
+                      
+                      # Add points for this frequency band
+                      points.append((x, y))
+                  
+                  # Draw the wave
+                  if len(points) > 1:
+                      for i in range(len(points) - 1):
+                          x1, y1 = points[i]
+                          x2, y2 = points[i + 1]
+                          
+                          # Vary line width based on amplitude
+                          line_width = max(1, min(4, band // 2 + 1))
+                          
+                          # Draw line segment
+                          draw.line([(x1, y1), (x2, y2)], fill=color, width=line_width)
+                          
+                          # Add glow effect (dots along the line)
+                          if random.random() < 0.3:
+                              size = random.randint(1, 3)
+                              draw.ellipse([x1-size, y1-size, x1+size, y1+size], fill=color)
+              
+              # Add some floating particles (music notes)
+              for _ in range(10):
+                  x = random.randint(0, width)
+                  y = random.randint(0, height)
+                  size = random.randint(1, 3)
+                  color = random.choice(colors)
                   draw.ellipse([x-size, y-size, x+size, y+size], fill=color)
               
-              # Create fireworks
-              if frame % 5 == 0 and contributions:  # Launch new firework every 5 frames
-                  # Choose a random contribution as launch point
-                  contri_idx = random.randint(0, min(50, len(contributions)-1))
-                  date, count = contributions[contri_idx]
-                  
-                  # Position based on contribution index
-                  x = (contri_idx % 20) * 40 + 20
-                  y = (contri_idx // 20) * 40 + 20
-                  
-                  # Firework size based on contribution count
-                  particles = min(50, 10 + count * 2)
-                  
-                  # Draw particles expanding from the center
-                  for i in range(particles):
-                      angle = random.uniform(0, 6.28)
-                      distance = (frame % 5) * 5
-                      px = x + distance * math.cos(angle)
-                      py = y + distance * math.sin(angle)
-                      
-                      # Color based on contribution count
-                      colors = [
-                          (255, 100, 100),  # Red
-                          (100, 255, 100),  # Green
-                          (100, 100, 255),  # Blue
-                          (255, 255, 100),  # Yellow
-                          (255, 100, 255),  # Magenta
-                      ]
-                      color = colors[count % len(colors)]
-                      
-                      size = random.randint(1, 3)
-                      draw.ellipse([px-size, py-size, px+size, py+size], fill=color)
+              # Add title
+              draw.text((width//2 - 100, 20), "GitHub Contributions Music Waves", fill=(200, 200, 220))
               
               # Add to frames
               gif_frames.append(img)
@@ -121,19 +165,19 @@ jobs:
           # Save as GIF
           if gif_frames:
               gif_frames[0].save(
-                  'dist/github-fireworks.gif',
+                  'dist/github-music-waves.gif',
                   save_all=True,
                   append_images=gif_frames[1:],
-                  duration=100,
+                  duration=80,
                   loop=0,
                   optimize=True
               )
-              print("Fireworks animation created successfully!")
+              print("Music waves animation created successfully!")
           else:
               print("No frames to save")
           EOF
 
-          python generate_fireworks.py
+          python generate_music_waves.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -143,14 +187,14 @@ jobs:
           publish_branch: output
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: "Update fireworks animation [skip ci]"
+          commit_message: "Update music waves animation [skip ci]"
 
-      - name: Update README with Fireworks Badge
+      - name: Update README with Music Waves Badge
         run: |
           # Add a badge to the README showing the latest animation
-          echo "\n## 🎆 GitHub Contributions Fireworks\n![GitHub Fireworks](https://github.com/${{ github.repository }}/blob/output/github-fireworks.gif)" >> README.md
+          echo "\n## 🎵 GitHub Contributions Music Waves\n![GitHub Music Waves](https://github.com/${{ github.repository }}/blob/output/github-music-waves.gif)" >> README.md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          git commit -m "Add fireworks animation badge to README" || echo "No changes to commit"
+          git commit -m "Add music waves animation badge to README" || echo "No changes to commit"
           git push
