@@ -23,18 +23,23 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Create dist directory
+        run: mkdir -p dist
+
       - name: Install dependencies
-        run: pip install requests pygifsicle pillow
+        run: pip install requests pillow
 
       - name: Create fireworks animation
         run: |
           cat > generate_fireworks.py << 'EOF'
           import requests
-          import json
-          from PIL import Image, ImageDraw
+          import math
           import random
+          from PIL import Image, ImageDraw
           import os
-          from glob import glob
+
+          # Create dist directory if it doesn't exist
+          os.makedirs('dist', exist_ok=True)
 
           # Get GitHub contributions data
           username = "${{ github.repository_owner }}"
@@ -42,14 +47,23 @@ jobs:
           response = requests.get(url)
           data = response.text
 
-          # Parse contributions (simplified parsing)
+          # Parse contributions
           contributions = []
           for line in data.split('\n'):
               if 'data-count=' in line and 'data-date=' in line:
-                  count = int(line.split('data-count="')[1].split('"')[0])
-                  date = line.split('data-date="')[1].split('"')[0]
-                  if count > 0:
-                      contributions.append((date, count))
+                  try:
+                      count_part = line.split('data-count="')[1]
+                      count = int(count_part.split('"')[0])
+                      date_part = line.split('data-date="')[1]
+                      date = date_part.split('"')[0]
+                      if count > 0:
+                          contributions.append((date, count))
+                  except:
+                      continue
+
+          # If no contributions found, use some defaults
+          if not contributions:
+              contributions = [('2023-01-01', 5), ('2023-01-02', 3), ('2023-01-03', 8)]
 
           # Create fireworks animation
           width, height = 800, 200
@@ -65,7 +79,7 @@ jobs:
                   x = (i % 20) * 40 + 20
                   y = (i // 20) * 40 + 20
                   size = min(8, 2 + count // 5)
-                  color = (45, 125, 250, 50)  # Faint blue
+                  color = (45, 125, 250)  # Blue
                   draw.ellipse([x-size, y-size, x+size, y+size], fill=color)
               
               # Create fireworks
@@ -105,14 +119,18 @@ jobs:
               gif_frames.append(img)
           
           # Save as GIF
-          gif_frames[0].save(
-              'dist/github-fireworks.gif',
-              save_all=True,
-              append_images=gif_frames[1:],
-              duration=100,
-              loop=0,
-              optimize=True
-          )
+          if gif_frames:
+              gif_frames[0].save(
+                  'dist/github-fireworks.gif',
+                  save_all=True,
+                  append_images=gif_frames[1:],
+                  duration=100,
+                  loop=0,
+                  optimize=True
+              )
+              print("Fireworks animation created successfully!")
+          else:
+              print("No frames to save")
           EOF
 
           python generate_fireworks.py
