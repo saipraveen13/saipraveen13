@@ -86,3 +86,5 @@ I enjoy building real-world projects, solving problems with code, and constantly
 \n## 🐍 GitHub Snake Game\n![GitHub Snake Game](https://github.com/saipraveen13/saipraveen13/blob/output/snake-classic.gif)
 \n## 🎆 GitHub Contributions Fireworks\n![GitHub Fireworks](https://github.com/saipraveen13/saipraveen13/blob/output/github-fireworks.gif)
 \n## 🎵 GitHub Contributions Music Waves\n![GitHub Music Waves](https://github.com/saipraveen13/saipraveen13/blob/output/github-music-waves.gif)
+\n## 🎵 GitHub Audio Spectrum\n![GitHub Audio Spectrum](https://github.com/saipraveen13/saipraveen13/blob/output/github-audio-spectrum-dark.gif)
+\n### Light Version\n![GitHub Audio Spectrum Light](https://github.com/saipraveen13/saipraveen13/blob/output/github-audio-spectrum-light.gif)
