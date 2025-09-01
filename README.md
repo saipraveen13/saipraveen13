@@ -83,3 +83,4 @@ I enjoy building real-world projects, solving problems with code, and constantly
   <img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/output/dist/snake-classic.gif" alt="Snake Game Animation" width="800" />
 </div>
 
+\n## 🐍 GitHub Snake Game\n![GitHub Snake Game](https://github.com/saipraveen13/saipraveen13/blob/output/snake-classic.gif)
