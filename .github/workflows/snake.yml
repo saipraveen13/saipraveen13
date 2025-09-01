@@ -146,15 +146,14 @@ jobs:
                       highlight_color = tuple(min(255, c + 40) for c in color)
                       draw.rectangle([x - bar_width//2 + 2, y_top, x - bar_width//2 + 4, y_bottom], fill=highlight_color)
                       
-                      # Add glow effect at the top
+                      # Add glow effect at the top (fixed to use integer)
                       if bar_height > 20:
-                          glow_size = min(15, bar_height // 4)
+                          glow_size = int(min(15, bar_height // 4))
                           for i in range(glow_size):
                               alpha = 150 - (i * 150 // glow_size)
-                              glow_color = color + (alpha,)
-                              draw.ellipse([x - glow_size//2 + i, y_top - glow_size//2 + i, 
-                                           x + glow_size//2 - i, y_top + glow_size//2 - i], 
-                                           fill=color)
+                              glow_color = tuple(min(255, c + (alpha // 6)) for c in color)
+                              radius = glow_size//2 - i
+                              draw.ellipse([x - radius, y_top - radius, x + radius, y_top + radius], fill=glow_color)
                   
                   # Add floating frequency circles
                   for _ in range(15):
@@ -162,22 +161,32 @@ jobs:
                       y = random.randint(0, height)
                       size = random.randint(2, 8)
                       color = random.choice(colors)
-                      alpha = random.randint(100, 200)
                       draw.ellipse([x-size, y-size, x+size, y+size], fill=color)
                   
                   # Add animated sound waves
                   for wave in range(3):
-                      wave_radius = 20 + (frame % 30) * 2
-                      wave_center_x = width // 2
-                      wave_center_y = height // 2
+                      wave_radius = 20 + ((frame + wave*10) % 30) * 3
+                      wave_center_x = random.randint(width//4, 3*width//4)
+                      wave_center_y = random.randint(height//4, 3*height//4)
                       
                       for r in range(wave_radius, wave_radius + 15, 3):
                           alpha = 150 - (r - wave_radius) * 10
                           if alpha > 0:
                               wave_color = colors[(wave + frame) % len(colors)]
+                              wave_color = tuple(int(c * alpha/150) for c in wave_color)
                               draw.ellipse([wave_center_x - r, wave_center_y - r, 
                                            wave_center_x + r, wave_center_y + r], 
                                            outline=wave_color, width=1)
+                  
+                  # Add bouncing balls
+                  for i in range(5):
+                      ball_x = (width // 6) * (i + 1)
+                      ball_y = height // 2 + math.sin(time + i) * (height // 4)
+                      ball_size = 8 + i * 2
+                      ball_color = colors[(i + frame) % len(colors)]
+                      draw.ellipse([ball_x - ball_size, ball_y - ball_size, 
+                                   ball_x + ball_size, ball_y + ball_size], 
+                                   fill=ball_color)
                   
                   # Add title with contribution count
                   total_contributions = sum(count for date, count in contributions)
