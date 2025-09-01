@@ -1,4 +1,4 @@
-name: GitHub Music Waves Animation
+name: GitHub Audio Spectrum Animation
 on:
   schedule:
     - cron: "0 0 * * *"  # Runs daily at midnight UTC
@@ -29,9 +29,9 @@ jobs:
       - name: Install dependencies
         run: pip install requests pillow numpy
 
-      - name: Create music waves animation
+      - name: Create audio spectrum animation
         run: |
-          cat > generate_music_waves.py << 'EOF'
+          cat > generate_audio_spectrum.py << 'EOF'
           import requests
           import math
           import random
@@ -66,118 +66,143 @@ jobs:
               contributions = [('2023-01-01', 5), ('2023-01-02', 3), ('2023-01-03', 8),
                               ('2023-01-04', 2), ('2023-01-05', 6), ('2023-01-06', 9)]
 
-          # Create music waves animation
-          width, height = 800, 300
-          frames = 40
-          gif_frames = []
-          
-          # Colors for different frequency bands
-          colors = [
-              (255, 100, 100),  # Red - bass
-              (255, 180, 50),   # Orange
-              (255, 255, 100),  # Yellow
-              (100, 255, 100),  # Green
-              (100, 200, 255),  # Blue
-              (180, 100, 255),  # Purple - treble
+          # Create both dark and light versions
+          backgrounds = [
+              {'name': 'dark', 'bg_color': (13, 17, 23), 'text_color': (200, 200, 220), 'grid_color': (40, 40, 50)},
+              {'name': 'light', 'bg_color': (255, 255, 255), 'text_color': (40, 40, 40), 'grid_color': (220, 220, 220)}
           ]
 
-          # Convert contributions to audio data
-          audio_data = [min(10, count) for date, count in contributions[:100]]  # Limit to 100 points
-          if len(audio_data) < 10:
-              audio_data = audio_data * (10 // len(audio_data) + 1)
-          
-          # Create frames
-          for frame in range(frames):
-              img = Image.new('RGB', (width, height), color=(13, 17, 23))  # GitHub dark bg
-              draw = ImageDraw.Draw(img)
+          for bg_style in backgrounds:
+              width, height = 800, 400
+              frames = 45
+              gif_frames = []
               
-              # Draw background grid (music staff lines)
-              for i in range(5):
-                  y = height // 2 - 40 + i * 20
-                  draw.line([(0, y), (width, y)], fill=(40, 40, 50), width=1)
+              # Colors for different frequency bands (more vibrant)
+              colors = [
+                  (255, 80, 80),    # Red
+                  (255, 160, 40),   # Orange
+                  (255, 255, 60),   # Yellow
+                  (60, 255, 60),    # Green
+                  (60, 180, 255),   # Blue
+                  (180, 60, 255),   # Purple
+                  (255, 60, 180),   # Pink
+              ]
+
+              # Convert contributions to audio data
+              audio_data = [min(15, count) for date, count in contributions[:80]]  # Limit to 80 points
               
-              # Draw time markers
-              for x in range(0, width, 50):
-                  draw.line([(x, height//2 - 50), (x, height//2 + 50)], fill=(50, 50, 60), width=1)
-              
-              # Draw center line
-              draw.line([(0, height//2), (width, height//2)], fill=(80, 80, 100), width=2)
-              
-              # Create music waves
-              time = frame * 0.2
-              
-              # Draw multiple frequency bands
-              for band in range(6):
-                  points = []
-                  color = colors[band]
+              # Create frames
+              for frame in range(frames):
+                  img = Image.new('RGB', (width, height), color=bg_style['bg_color'])
+                  draw = ImageDraw.Draw(img)
                   
-                  # Different frequencies for each band
-                  freq = 0.5 + band * 0.3
-                  amplitude = 15 + band * 5
+                  # Draw background grid
+                  for i in range(10):
+                      y = i * (height // 10)
+                      draw.line([(0, y), (width, y)], fill=bg_style['grid_color'], width=1)
                   
-                  for x in range(0, width, 4):
-                      # Base wave (sine wave)
-                      y_base = math.sin(x * 0.02 * freq + time) * amplitude
+                  for i in range(16):
+                      x = i * (width // 16)
+                      draw.line([(x, 0), (x, height)], fill=bg_style['grid_color'], width=1)
+                  
+                  # Draw center line
+                  draw.line([(0, height//2), (width, height//2)], fill=bg_style['grid_color'], width=2)
+                  
+                  # Create audio spectrum bars
+                  time = frame * 0.15
+                  bar_width = width // 32
+                  
+                  # Draw multiple frequency bands
+                  for band in range(32):
+                      # Different frequencies for each band
+                      freq = 0.3 + band * 0.1
+                      
+                      # Base height modulation (sine wave)
+                      base_height = math.sin(band * 0.2 + time) * 0.5 + 0.5
                       
                       # Add contribution-based modulation
-                      data_idx = int((x / width) * len(audio_data)) % len(audio_data)
-                      modulation = audio_data[data_idx] * 2
+                      data_idx = band % len(audio_data)
+                      contribution_mod = audio_data[data_idx] / 15.0
                       
-                      # Add some randomness for organic feel
-                      noise = random.uniform(-3, 3)
+                      # Add some randomness
+                      noise = random.uniform(0.8, 1.2)
                       
-                      y = height // 2 + y_base + modulation + noise
+                      # Calculate final bar height
+                      bar_height = (base_height * contribution_mod * noise) * (height // 2 - 20)
                       
-                      # Add points for this frequency band
-                      points.append((x, y))
+                      # Choose color based on band and height
+                      color_idx = (band + frame) % len(colors)
+                      color = colors[color_idx]
+                      
+                      # Draw the bar
+                      x = band * bar_width + bar_width // 2
+                      y_top = height // 2 - bar_height
+                      y_bottom = height // 2 + bar_height
+                      
+                      # Draw the main bar
+                      draw.rectangle([x - bar_width//2 + 2, y_top, x + bar_width//2 - 2, y_bottom], fill=color)
+                      
+                      # Add 3D effect with highlights
+                      highlight_color = tuple(min(255, c + 40) for c in color)
+                      draw.rectangle([x - bar_width//2 + 2, y_top, x - bar_width//2 + 4, y_bottom], fill=highlight_color)
+                      
+                      # Add glow effect at the top
+                      if bar_height > 20:
+                          glow_size = min(15, bar_height // 4)
+                          for i in range(glow_size):
+                              alpha = 150 - (i * 150 // glow_size)
+                              glow_color = color + (alpha,)
+                              draw.ellipse([x - glow_size//2 + i, y_top - glow_size//2 + i, 
+                                           x + glow_size//2 - i, y_top + glow_size//2 - i], 
+                                           fill=color)
                   
-                  # Draw the wave
-                  if len(points) > 1:
-                      for i in range(len(points) - 1):
-                          x1, y1 = points[i]
-                          x2, y2 = points[i + 1]
-                          
-                          # Vary line width based on amplitude
-                          line_width = max(1, min(4, band // 2 + 1))
-                          
-                          # Draw line segment
-                          draw.line([(x1, y1), (x2, y2)], fill=color, width=line_width)
-                          
-                          # Add glow effect (dots along the line)
-                          if random.random() < 0.3:
-                              size = random.randint(1, 3)
-                              draw.ellipse([x1-size, y1-size, x1+size, y1+size], fill=color)
+                  # Add floating frequency circles
+                  for _ in range(15):
+                      x = random.randint(0, width)
+                      y = random.randint(0, height)
+                      size = random.randint(2, 8)
+                      color = random.choice(colors)
+                      alpha = random.randint(100, 200)
+                      draw.ellipse([x-size, y-size, x+size, y+size], fill=color)
+                  
+                  # Add animated sound waves
+                  for wave in range(3):
+                      wave_radius = 20 + (frame % 30) * 2
+                      wave_center_x = width // 2
+                      wave_center_y = height // 2
+                      
+                      for r in range(wave_radius, wave_radius + 15, 3):
+                          alpha = 150 - (r - wave_radius) * 10
+                          if alpha > 0:
+                              wave_color = colors[(wave + frame) % len(colors)]
+                              draw.ellipse([wave_center_x - r, wave_center_y - r, 
+                                           wave_center_x + r, wave_center_y + r], 
+                                           outline=wave_color, width=1)
+                  
+                  # Add title with contribution count
+                  total_contributions = sum(count for date, count in contributions)
+                  title = f"GitHub Audio Spectrum - {total_contributions} Contributions"
+                  draw.text((width//2 - 180, 20), title, fill=bg_style['text_color'])
+                  
+                  # Add to frames
+                  gif_frames.append(img)
               
-              # Add some floating particles (music notes)
-              for _ in range(10):
-                  x = random.randint(0, width)
-                  y = random.randint(0, height)
-                  size = random.randint(1, 3)
-                  color = random.choice(colors)
-                  draw.ellipse([x-size, y-size, x+size, y+size], fill=color)
-              
-              # Add title
-              draw.text((width//2 - 100, 20), "GitHub Contributions Music Waves", fill=(200, 200, 220))
-              
-              # Add to frames
-              gif_frames.append(img)
-          
-          # Save as GIF
-          if gif_frames:
-              gif_frames[0].save(
-                  'dist/github-music-waves.gif',
-                  save_all=True,
-                  append_images=gif_frames[1:],
-                  duration=80,
-                  loop=0,
-                  optimize=True
-              )
-              print("Music waves animation created successfully!")
-          else:
-              print("No frames to save")
+              # Save as GIF
+              if gif_frames:
+                  gif_frames[0].save(
+                      f'dist/github-audio-spectrum-{bg_style["name"]}.gif',
+                      save_all=True,
+                      append_images=gif_frames[1:],
+                      duration=70,
+                      loop=0,
+                      optimize=True
+                  )
+                  print(f"{bg_style['name']} spectrum animation created successfully!")
+              else:
+                  print("No frames to save")
           EOF
 
-          python generate_music_waves.py
+          python generate_audio_spectrum.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -187,14 +212,15 @@ jobs:
           publish_branch: output
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: "Update music waves animation [skip ci]"
+          commit_message: "Update audio spectrum animations [skip ci]"
 
-      - name: Update README with Music Waves Badge
+      - name: Update README with Audio Spectrum Badge
         run: |
           # Add a badge to the README showing the latest animation
-          echo "\n## 🎵 GitHub Contributions Music Waves\n![GitHub Music Waves](https://github.com/${{ github.repository }}/blob/output/github-music-waves.gif)" >> README.md
+          echo "\n## 🎵 GitHub Audio Spectrum\n![GitHub Audio Spectrum](https://github.com/${{ github.repository }}/blob/output/github-audio-spectrum-dark.gif)" >> README.md
+          echo "\n### Light Version\n![GitHub Audio Spectrum Light](https://github.com/${{ github.repository }}/blob/output/github-audio-spectrum-light.gif)" >> README.md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          git commit -m "Add music waves animation badge to README" || echo "No changes to commit"
+          git commit -m "Add audio spectrum animation badges to README" || echo "No changes to commit"
           git push
