@@ -84,3 +84,4 @@ I enjoy building real-world projects, solving problems with code, and constantly
 </div>
 
 \n## 🐍 GitHub Snake Game\n![GitHub Snake Game](https://github.com/saipraveen13/saipraveen13/blob/output/snake-classic.gif)
+\n## 🎆 GitHub Contributions Fireworks\n![GitHub Fireworks](https://github.com/saipraveen13/saipraveen13/blob/output/github-fireworks.gif)
