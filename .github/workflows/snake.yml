@@ -30,85 +30,39 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set up permissions for dist directory
+        run: sudo chmod -R 777 dist
+
       - name: Add Sparkles and Fireworks Effects
         run: |
-          # Install required tools
-          sudo apt-get update
-          sudo apt-get install -y librsvg2-dev python3-pip
-          pip3 install svgwrite
-          
-          # Create Python script to add effects
-          cat > add_effects.py << 'EOF'
-          import sys
-          import xml.etree.ElementTree as ET
-          import os
-          
-          # Function to add effects to SVG
-          def add_effects_to_svg(input_file, output_file):
-              # Parse the SVG
-              tree = ET.parse(input_file)
-              root = tree.getroot()
+          # Create a simple script to add animations using sed
+          cat > add_effects.sh << 'EOF'
+          #!/bin/bash
+          for file in dist/*.svg; do
+            if [ -f "$file" ]; then
+              # Create a backup
+              cp "$file" "$file.bak"
               
-              # Add namespace if needed
-              if '}' not in root.tag:
-                  namespace = ''
-              else:
-                  namespace = root.tag.split('}')[0] + '}'
+              # Add style element with animations
+              sed -i '/<\/defs>/a\  <style>\n    @keyframes sparkle { 0%, 100% { opacity: 0; transform: scale(1); } 50% { opacity: 1; transform: scale(1.5); } }\n    @keyframes explode { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }\n  </style>' "$file"
               
-              # Find the SVG element
-              svg_element = root
+              # Add sparkles
+              sed -i '/<\/style>/a\  <circle cx="50" cy="50" r="2" fill="gold" style="animation: sparkle 2s infinite;"/>\n  <circle cx="70" cy="30" r="2" fill="gold" style="animation: sparkle 2s infinite; animation-delay: 0.5s;"/>\n  <circle cx="90" cy="50" r="2" fill="gold" style="animation: sparkle 2s infinite; animation-delay: 1s;"/>\n  <circle cx="110" cy="30" r="2" fill="gold" style="animation: sparkle 2s infinite; animation-delay: 1.5s;"/>' "$file"
               
-              # Add CSS animations
-              style = ET.SubElement(svg_element, 'style')
-              style.text = '''
-              @keyframes sparkle {
-                0%, 100% { opacity: 0; transform: scale(1); }
-                50% { opacity: 1; transform: scale(1.5); }
-              }
-              @keyframes explode {
-                0% { transform: scale(1); opacity: 1; }
-                100% { transform: scale(3); opacity: 0; }
-              }
-              '''
+              # Add fireworks
+              sed -i '/<\/style>/a\  <circle cx="200" cy="100" r="3" fill="red" style="animation: explode 1.5s infinite;"/>\n  <circle cx="250" cy="150" r="3" fill="blue" style="animation: explode 1.5s infinite; animation-delay: 0.5s;"/>\n  <circle cx="300" cy="100" r="3" fill="green" style="animation: explode 1.5s infinite; animation-delay: 1s;"/>' "$file"
               
-              # Add sparkle elements
-              for i in range(30):
-                  sparkle = ET.SubElement(svg_element, 'circle', {
-                      'cx': str(20 + i * 15),
-                      'cy': '20',
-                      'r': '2',
-                      'fill': 'gold',
-                      'style': 'animation: sparkle 2s infinite; animation-delay: ' + str(i * 0.2) + 's;'
-                  })
-              
-              # Add fireworks elements
-              for i in range(5):
-                  firework = ET.SubElement(svg_element, 'circle', {
-                      'cx': str(100 + i * 50),
-                      'cy': '100',
-                      'r': '3',
-                      'fill': ['red', 'blue', 'green', 'purple', 'orange'][i],
-                      'style': 'animation: explode 1.5s infinite; animation-delay: ' + str(i * 0.5) + 's;'
-                  })
-              
-              # Write to output file
-              with open(output_file, 'wb') as f:
-                  f.write('<?xml version="1.0" encoding="UTF-8"?>\n'.encode('utf-8'))
-                  f.write(ET.tostring(root))
-          
-          # Process files
-          input_files = ['dist/github-snake.svg', 'dist/github-snake-dark.svg']
-          for input_file in input_files:
-              if os.path.exists(input_file):
-                  output_file = input_file.replace('.svg', '-animated.svg')
-                  add_effects_to_svg(input_file, output_file)
-                  print(f"Created animated version: {output_file}")
+              echo "Added effects to $file"
+            fi
+          done
           EOF
           
-          # Run the Python script
-          python3 add_effects.py
-          
-          # Create a simple HTML page to showcase the animations
+          # Make the script executable and run it
+          chmod +x add_effects.sh
+          ./add_effects.sh
+
+      - name: Create HTML showcase
+        run: |
           cat > dist/index.html << 'EOF'
           <!DOCTYPE html>
           <html>
@@ -118,44 +72,52 @@ jobs:
                   body {
                       font-family: Arial, sans-serif;
                       text-align: center;
-                      background-color: #f0f0f0;
-                      margin: 20px;
+                      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                      margin: 0;
+                      padding: 20px;
                   }
                   .container {
-                      margin: 20px auto;
                       max-width: 800px;
+                      margin: 0 auto;
                       background: white;
                       padding: 20px;
                       border-radius: 10px;
-                      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                   }
-                  img {
-                      max-width: 100%;
-                      margin: 10px 0;
+                  h1 {
+                      color: #333;
+                  }
+                  .svg-container {
+                      margin: 20px 0;
                       border: 1px solid #ddd;
                       border-radius: 5px;
+                      padding: 10px;
+                      background: white;
+                  }
+                  .original {
+                      opacity: 0.8;
                   }
               </style>
           </head>
           <body>
               <div class="container">
                   <h1>GitHub Snake Game with Animations</h1>
-                  <p>Here are your GitHub contribution graphs with added sparkles and fireworks animations!</p>
+                  <p>Your GitHub contribution graph with added sparkles and fireworks!</p>
                   
-                  <h2>Light Theme with Animations</h2>
-                  <img src="github-snake-animated.svg" alt="Light theme snake with animations">
+                  <div class="svg-container">
+                      <h2>Light Theme with Animations</h2>
+                      <img src="github-snake.svg" alt="Light theme snake with animations" style="max-width: 100%;">
+                  </div>
                   
-                  <h2>Dark Theme with Animations</h2>
-                  <img src="github-snake-dark-animated.svg" alt="Dark theme snake with animations">
+                  <div class="svg-container">
+                      <h2>Dark Theme with Animations</h2>
+                      <img src="github-snake-dark.svg" alt="Dark theme snake with animations" style="max-width: 100%;">
+                  </div>
                   
-                  <h2>Original Light Theme</h2>
-                  <img src="github-snake.svg" alt="Original light theme snake">
-                  
-                  <h2>Original Dark Theme</h2>
-                  <img src="github-snake-dark.svg" alt="Original dark theme snake">
-                  
-                  <h2>Ocean Animation</h2>
-                  <img src="ocean.gif" alt="Ocean animation">
+                  <div class="svg-container original">
+                      <h2>Ocean Animation</h2>
+                      <img src="ocean.gif" alt="Ocean animation" style="max-width: 100%;">
+                  </div>
               </div>
           </body>
           </html>
