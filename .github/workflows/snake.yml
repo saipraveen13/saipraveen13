@@ -33,58 +33,133 @@ jobs:
       - name: Add Sparkles and Fireworks Effects
         run: |
           # Install required tools
+          sudo apt-get update
           sudo apt-get install -y librsvg2-dev python3-pip
           pip3 install svgwrite
-
+          
           # Create Python script to add effects
           cat > add_effects.py << 'EOF'
-          # Python script to add sparkles and fireworks to SVG
           import sys
           import xml.etree.ElementTree as ET
-          from svgwrite import Drawing, shapes
-
-          # Load generated SVG
-          tree = ET.parse(sys.argv[1])
-          root = tree.getroot()
+          import os
           
-          # Add sparkle elements (example)
-          for i in range(20):
-              sparkle = ET.SubElement(root, 'circle',
-                  cx=str(50 + i*10),
-                  cy="50",
-                  r="2",
-                  fill="gold",
-                  style="animation: sparkle 2s infinite;"
-              )
+          # Function to add effects to SVG
+          def add_effects_to_svg(input_file, output_file):
+              # Parse the SVG
+              tree = ET.parse(input_file)
+              root = tree.getroot()
+              
+              # Add namespace if needed
+              if '}' not in root.tag:
+                  namespace = ''
+              else:
+                  namespace = root.tag.split('}')[0] + '}'
+              
+              # Find the SVG element
+              svg_element = root
+              
+              # Add CSS animations
+              style = ET.SubElement(svg_element, 'style')
+              style.text = '''
+              @keyframes sparkle {
+                0%, 100% { opacity: 0; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.5); }
+              }
+              @keyframes explode {
+                0% { transform: scale(1); opacity: 1; }
+                100% { transform: scale(3); opacity: 0; }
+              }
+              '''
+              
+              # Add sparkle elements
+              for i in range(30):
+                  sparkle = ET.SubElement(svg_element, 'circle', {
+                      'cx': str(20 + i * 15),
+                      'cy': '20',
+                      'r': '2',
+                      'fill': 'gold',
+                      'style': 'animation: sparkle 2s infinite; animation-delay: ' + str(i * 0.2) + 's;'
+                  })
+              
+              # Add fireworks elements
+              for i in range(5):
+                  firework = ET.SubElement(svg_element, 'circle', {
+                      'cx': str(100 + i * 50),
+                      'cy': '100',
+                      'r': '3',
+                      'fill': ['red', 'blue', 'green', 'purple', 'orange'][i],
+                      'style': 'animation: explode 1.5s infinite; animation-delay: ' + str(i * 0.5) + 's;'
+                  })
+              
+              # Write to output file
+              with open(output_file, 'wb') as f:
+                  f.write('<?xml version="1.0" encoding="UTF-8"?>\n'.encode('utf-8'))
+                  f.write(ET.tostring(root))
           
-          # Add fireworks elements (example)
-          firework = ET.SubElement(root, 'circle',
-              cx="200",
-              cy="200",
-              r="5",
-              fill="red",
-              style="animation: explode 1s infinite;"
-          )
-          
-          # Add CSS animations
-          style = ET.SubElement(root, 'style')
-          style.text = '''
-          @keyframes sparkle {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; transform: scale(1.5); }
-          }
-          @keyframes explode {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(5); opacity: 0; }
-          }
-          '''
-          
-          tree.write(sys.argv[1])
+          # Process files
+          input_files = ['dist/github-snake.svg', 'dist/github-snake-dark.svg']
+          for input_file in input_files:
+              if os.path.exists(input_file):
+                  output_file = input_file.replace('.svg', '-animated.svg')
+                  add_effects_to_svg(input_file, output_file)
+                  print(f"Created animated version: {output_file}")
           EOF
-
-          # Process each SVG file
-          python3 add_effects.py dist/github-snake.svg
-          python3 add_effects.py dist/github-snake-dark.svg
+          
+          # Run the Python script
+          python3 add_effects.py
+          
+          # Create a simple HTML page to showcase the animations
+          cat > dist/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>GitHub Snake Game with Animations</title>
+              <style>
+                  body {
+                      font-family: Arial, sans-serif;
+                      text-align: center;
+                      background-color: #f0f0f0;
+                      margin: 20px;
+                  }
+                  .container {
+                      margin: 20px auto;
+                      max-width: 800px;
+                      background: white;
+                      padding: 20px;
+                      border-radius: 10px;
+                      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                  }
+                  img {
+                      max-width: 100%;
+                      margin: 10px 0;
+                      border: 1px solid #ddd;
+                      border-radius: 5px;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>GitHub Snake Game with Animations</h1>
+                  <p>Here are your GitHub contribution graphs with added sparkles and fireworks animations!</p>
+                  
+                  <h2>Light Theme with Animations</h2>
+                  <img src="github-snake-animated.svg" alt="Light theme snake with animations">
+                  
+                  <h2>Dark Theme with Animations</h2>
+                  <img src="github-snake-dark-animated.svg" alt="Dark theme snake with animations">
+                  
+                  <h2>Original Light Theme</h2>
+                  <img src="github-snake.svg" alt="Original light theme snake">
+                  
+                  <h2>Original Dark Theme</h2>
+                  <img src="github-snake-dark.svg" alt="Original dark theme snake">
+                  
+                  <h2>Ocean Animation</h2>
+                  <img src="ocean.gif" alt="Ocean animation">
+              </div>
+          </body>
+          </html>
+          EOF
 
       - name: Deploy to Output Branch
         uses: peaceiris/actions-gh-pages@v3
@@ -94,4 +169,4 @@ jobs:
           publish_branch: output
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: "Update snake animation with effects [skip ci]"
+          commit_message: "Update snake animation with sparkles and fireworks [skip ci]"
