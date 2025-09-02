@@ -30,6 +30,62 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Add Sparkles and Fireworks Effects
+        run: |
+          # Install required tools
+          sudo apt-get install -y librsvg2-dev python3-pip
+          pip3 install svgwrite
+
+          # Create Python script to add effects
+          cat > add_effects.py << 'EOF'
+          # Python script to add sparkles and fireworks to SVG
+          import sys
+          import xml.etree.ElementTree as ET
+          from svgwrite import Drawing, shapes
+
+          # Load generated SVG
+          tree = ET.parse(sys.argv[1])
+          root = tree.getroot()
+          
+          # Add sparkle elements (example)
+          for i in range(20):
+              sparkle = ET.SubElement(root, 'circle',
+                  cx=str(50 + i*10),
+                  cy="50",
+                  r="2",
+                  fill="gold",
+                  style="animation: sparkle 2s infinite;"
+              )
+          
+          # Add fireworks elements (example)
+          firework = ET.SubElement(root, 'circle',
+              cx="200",
+              cy="200",
+              r="5",
+              fill="red",
+              style="animation: explode 1s infinite;"
+          )
+          
+          # Add CSS animations
+          style = ET.SubElement(root, 'style')
+          style.text = '''
+          @keyframes sparkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; transform: scale(1.5); }
+          }
+          @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(5); opacity: 0; }
+          }
+          '''
+          
+          tree.write(sys.argv[1])
+          EOF
+
+          # Process each SVG file
+          python3 add_effects.py dist/github-snake.svg
+          python3 add_effects.py dist/github-snake-dark.svg
+
       - name: Deploy to Output Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -38,4 +94,4 @@ jobs:
           publish_branch: output
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: "Update snake animation [skip ci]"
+          commit_message: "Update snake animation with effects [skip ci]"
