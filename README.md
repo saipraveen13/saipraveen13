@@ -77,8 +77,3 @@ I enjoy building real-world projects, solving problems with code, and constantly
 <div align="center">
   <img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/output/github-snake.svg" alt="Snake Game" />
 </div>
-
-<!-- Animated GIF version for better compatibility -->
-<div align="center">
-  <img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/output/dist/snake-ocean.gif" alt="Snake Game Animation" width="800" />
-</div>
