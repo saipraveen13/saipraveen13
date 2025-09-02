@@ -1,12 +1,18 @@
+
+<p align="center">
+<img src="https://capsule-render.vercel.app/api?type=venom&height=200&color=gradient&text=𝑯𝒊%20𝒊%20𝒂𝒎%20𝑷𝒓𝒂𝒗𝒆𝒆𝒏&section=header&fontColor=white&stroke=black&strokeWidth=2&rotate=0" width="100%" />
+
+</p>
+
+
+
 <div align="center">
-
-  ![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=3000&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=Welcome+to+my+GitHub+Profile!;I'm+a+Data+Science+and+ML+Enthusiast;Skilled+in+Python%2C+R%2C+and+SQL;Exploring+Machine+Learning+%26+AI;Web+Development+with+React+%26+Flask;Data+Visualization+with+Tableau+%26+PowerBI)
-
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=3000&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=𝙒𝙚𝙡𝙘𝙤𝙢𝙚+𝙩𝙤+𝙢𝙮+𝙂𝙞𝙩𝙃𝙪𝙗+𝙋𝙧𝙤𝙛𝙞𝙡𝙚!;𝙄'𝙢+𝙖+𝘿𝙖𝙩𝙖+𝙎𝙘𝙞𝙚𝙣𝙘𝙚+𝙖𝙣𝙙+𝙈𝙇+𝙀𝙣𝙩𝙝𝙪𝙨𝙞𝙖𝙨𝙩;𝙎𝙠𝙞𝙡𝙡𝙚𝙙+𝙞𝙣+𝙋𝙮𝙩𝙝𝙤𝙣%2C+𝙍%2C+𝙖𝙣𝙙+𝙎𝙌𝙇;𝙀𝙭𝙥𝙡𝙤𝙧𝙞𝙣𝙜+𝙈𝙖𝙘𝙝𝙞𝙣𝙚+𝙇𝙚𝙖𝙧𝙣𝙞𝙣𝙜+%26+𝘼𝙄;𝙒𝙚𝙗+𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙢𝙚𝙣𝙩+𝙬𝙞𝙩𝙝+𝙍𝙚𝙖𝙘𝙩+%26+𝙁𝙡𝙖𝙨𝙠;𝘿𝙖𝙩𝙖+𝙑𝙞𝙨𝙪𝙖𝙡𝙞𝙯𝙖𝙩𝙞𝙤𝙣+𝙬𝙞𝙩𝙝+𝙏𝙖𝙗𝙡𝙚𝙖𝙪+%26+𝙋𝙤𝙬𝙚𝙧𝘽𝙄" alt="Typing SVG" />
 </div>
 
 
 
-Hi, I'm **Praveen**!  
+ 
 I'm passionate about **Data Science, Web Development, and Machine Learning**.  
 I enjoy building real-world projects, solving problems with code, and constantly learning new technologies.  
 
@@ -59,12 +65,13 @@ I enjoy building real-world projects, solving problems with code, and constantly
 
 ## 📈 GitHub Stats
 
-<!-- Animated GitHub stats -->
+
+<!-- GitHub Stats -->
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=saipraveen13&show_icons=true&theme=radical&count_private=true" alt="GitHub Stats" />
-  <br/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=saipraveen13&theme=radical" alt="GitHub Streak" />
+  <img src="https://github-readme-stats.vercel.app/api?username=saipraveen13&show_icons=true&theme=radical&count_private=true&hide_border=true&border_radius=20" alt="GitHub Stats" height="180"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=saipraveen13&theme=radical&hide_border=true&border_radius=20" alt="GitHub Streak" height="180"/>
 </div>
+
 
 
 ## 📫 How to reach me
