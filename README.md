@@ -72,8 +72,3 @@ I enjoy building real-world projects, solving problems with code, and constantly
 
 ⭐️ From [saipraveen13](https://github.com/saipraveen13/)
 
-
-<!-- Snake Game Animation -->
-<div align="center">
-  <img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/output/github-snake.svg" alt="Snake Game" />
-</div>
