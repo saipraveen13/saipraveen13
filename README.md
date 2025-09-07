@@ -114,7 +114,11 @@
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=saipraveen13&show_icons=true&theme=radical&count_private=true&hide_border=true&border_radius=20" alt="GitHub Stats" height="180"/>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=saipraveen13&theme=radical&hide_border=true&border_radius=20" alt="GitHub Streak" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=saipraveen13&layout=compact&theme=radical"/>
 </div>
+
+## 🏆 Trophies
+![Trophies](https://github-profile-trophy.vercel.app/?username=saipraveen13&theme=radical&no-frame=true&row=1&column=6)
 
 
 ## 📫 How to reach me
