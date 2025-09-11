@@ -129,9 +129,9 @@
 
 
 ## 📫 How to reach me
-- Email : saikatta07@gmail.com
-- Instagram : saipraveen___
-- Linkedin : katta praveen
+Email : saikatta07@gmail.com
+Instagram : saipraveen___
+Linkedin : katta praveen
 
 ⭐️ From [saipraveen13](https://github.com/saipraveen13/)
 
