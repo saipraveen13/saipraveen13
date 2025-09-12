@@ -1,4 +1,3 @@
-
 <p align="center">
 <img src="https://capsule-render.vercel.app/api?type=venom&height=200&color=gradient&text=𝑯𝒊!%20𝒊%20𝒂𝒎%20𝑷𝒓𝒂𝒗𝒆𝒆𝒏✌&section=header&fontColor=white&stroke=black&strokeWidth=2&rotate=0" width="100%" />
 
@@ -141,3 +140,49 @@
 
 ⭐️ From [saipraveen13](https://github.com/saipraveen13/)
 
+
+-----------------------------------------------------------
+👨🏻‍💻 **About Me**
+<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/assets/dev.gif" min-width="300px" max-width="300px" width="350px" align="right">
+
+✨ Aspiring Data Scientist | Tech Enthusiast <br>
+⚡ Exploring **Data Science | Machine Learning | Web Development** <br>
+🌱 Currently learning **AI, Cloud, and Full-Stack Development** <br>
+📫 Reach me: [LinkedIn](https://www.linkedin.com/in/your-link/) | [Portfolio](https://your-portfolio-link.com)<br>
+👯 Looking to collaborate on **Open Source & Data Projects** <br>
+💬 Ask me about **Python, ML, and Analytics** <br>
+
+
+<b>🛠 Tech Stack</b><br><br>
+
+**Languages:**  
+<img src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-MySQL-4479A1?logo=mysql&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-R-276DC3?logo=r&logoColor=white&style=flat">&nbsp;
+
+**Frameworks & Libraries:**  
+<img src="https://img.shields.io/badge/-NumPy-013243?logo=numpy&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-Scikit--Learn-F7931E?logo=scikit-learn&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-Matplotlib-11557C?logo=plotly&logoColor=white&style=flat">&nbsp;
+
+**Tools & Platforms:**  
+<img src="https://img.shields.io/badge/-Git-F05032?logo=git&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-GitHub-181717?logo=github&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-Power%20BI-F2C811?logo=powerbi&logoColor=black&style=flat">&nbsp;
+
+-----------------------------------------------------------
+<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/assets/illustration.png" min-width="300px" max-width="300px" width="350px" align="left">  
+
+👨🏻‍💻 **About Me**  
+✨ Aspiring Data Scientist | Tech & Analytics Enthusiast <br>  
+⚡ Exploring **Machine Learning | Data Science | Web Development** <br>  
+🌱 Currently learning **Python, SQL, and Advanced ML** <br>  
+📫 How to reach me: [LinkedIn](https://www.linkedin.com/in/saipraveen13) | [Portfolio](https://saipraveen13.github.io/) <br>  
+👯 Looking to collaborate on **Data Science & Open Source Projects** <br>  
+💬 Ask me about **Python, Machine Learning, Data Analytics** <br>  
+
+<!--- Adding Tech Stack open Section -->
