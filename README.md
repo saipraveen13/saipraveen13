@@ -8,15 +8,14 @@
 
 -----------------------------------------------------------
 👨🏻‍💻 **About Me**
-<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/assets/dev.gif" min-width="300px" max-width="300px" width="350px" align="right">
+<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/assets/trader.png" min-width="300px" max-width="300px" width="350px" align="right">  
 
-✨ Aspiring Data Scientist | Tech Enthusiast <br>
-⚡ Exploring **Data Science | Machine Learning | Web Development** <br>
-🌱 Currently learning **AI, Cloud, and Full-Stack Development** <br>
-📫 Reach me: [LinkedIn](https://www.linkedin.com/in/your-link/) | [Portfolio](https://your-portfolio-link.com)<br>
-👯 Looking to collaborate on **Open Source & Data Projects** <br>
-💬 Ask me about **Python, ML, and Analytics** <br>
-
+✨ Aspiring Data Scientist | Tech & Analytics Enthusiast <br>  
+⚡ Exploring **Machine Learning | Data Science | Web Development** <br>  
+🌱 Currently learning **Python, SQL, and Advanced ML** <br>  
+📫 Reach me: [LinkedIn](https://www.linkedin.com/in/saipraveen13) | [Portfolio](https://saipraveen13.github.io/) <br>  
+👯 Looking to collaborate on **Data Science & Open Source Projects** <br>  
+💬 Ask me about **Python, Machine Learning, Data Analytics** <br>  
 
 <b>🛠 Tech Stack</b><br><br>
 
