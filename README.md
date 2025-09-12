@@ -8,7 +8,7 @@
 
 -----------------------------------------------------------
 👨🏻‍💻 **About Me**
-<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/assets/trader.png" min-width="300px" max-width="300px" width="350px" align="right">  
+<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/flat-illustration-stock-trader-working-computer-with-graphs-man-investor-using-pc-analyzing-charts-d.zip.png" min-width="300px" max-width="300px" width="350px" align="right">  
 
 ✨ Aspiring Data Scientist | Tech & Analytics Enthusiast <br>  
 ⚡ Exploring **Machine Learning | Data Science | Web Development** <br>  
