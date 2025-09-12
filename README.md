@@ -7,17 +7,17 @@
 </div>
 
 -----------------------------------------------------------
-👨🏻‍💻 **About Me**
-<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/flat-illustration-stock-trader-working-computer-with-graphs-man-investor-using-pc-analyzing-charts-d.zip.png" min-width="300px" max-width="300px" width="350px" align="right">  
+### 👨🏻‍💻 About Me
+<img src="https://raw.githubusercontent.com/saipraveen13/saipraveen13/main/analyze.jpg" min-width="300px" max-width="300px" width="350px" align="right">  
 
-✨ Aspiring Data Scientist | Tech & Analytics Enthusiast <br>  
-⚡ Exploring **Machine Learning | Data Science | Web Development** <br>  
-🌱 Currently learning **Python, SQL, and Advanced ML** <br>  
-📫 Reach me: [LinkedIn](https://www.linkedin.com/in/saipraveen13) | [Portfolio](https://saipraveen13.github.io/) <br>  
-👯 Looking to collaborate on **Data Science & Open Source Projects** <br>  
-💬 Ask me about **Python, Machine Learning, Data Analytics** <br>  
+- ✨ Aspiring Data Scientist | Tech & Analytics Enthusiast 
+- ⚡ Exploring **Machine Learning | Data Science | Web Development**
+- 🌱 Currently learning **Python, SQL, and Advanced ML**
+- 📫 Reach me: [LinkedIn](https://www.linkedin.com/in/saipraveen13) | [Portfolio](https://saipraveen13.github.io/)
+- 👯 Looking to collaborate on **Data Science & Open Source Projects**  
+- 💬 Ask me about **Python, Machine Learning, Data Analytics**
 
-<b>🛠 Tech Stack</b><br><br>
+### 🛠 Tech Stack
 
 **Languages:**  
 <img src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white&style=flat">&nbsp;
@@ -38,19 +38,37 @@
 <img src="https://img.shields.io/badge/-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-Power%20BI-F2C811?logo=powerbi&logoColor=black&style=flat">&nbsp;
 
-## 📈 GitHub Stats
+-----------------------------------------------------------
+
+### 📈 GitHub Stats
 
 
 <!-- GitHub Stats -->
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=saipraveen13&show_icons=true&theme=radical&count_private=true&hide_border=true&border_radius=20" alt="GitHub Stats" height="180"/>
+
+  <img src="https://github-readme-stats.vercel.app/api?username=saipraveen13&show_icons=true&theme=blueberry&count_private=true&hide_border=true&border_radius=15" alt="GitHub Stats" height="140"/>
+
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=saipraveen13&theme=blueberry&hide_border=true&border_radius=15" alt="GitHub Streak" height="140"/>
+
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=saipraveen13&layout=compact&theme=blueberry&hide_border=true&border_radius=15" height="140"/>
+
 </div>
 
-<div align="center">
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=saipraveen13&theme=radical&hide_border=true&border_radius=20" alt="GitHub Streak" height="180"/>
-</div>
+-----------------------------------------------------------
 
-<div align="center">
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=saipraveen13&layout=compact&theme=radical"/>
-</div>
-
+### 👣 Connect with Me
+<p align="center">
+  <a href="https://www.linkedin.com/in/saipraveen13/"><img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a>
+  <a href="mailto:saikatta07@gmail.com"><img src="https://img.icons8.com/color/48/000000/gmail.png"/></a>
+  <a href="https://github.com/saipraveen13"><img src="https://img.icons8.com/ios-glyphs/48/000000/github.png"/></a>
+</p>
+<br>    
+<p align="center">
+<a href="https://www.kaggle.com/kattassrpraveen">
+  <img src="https://img.shields.io/badge/Kaggle-20BEFF?style=flat&logo=kaggle&logoColor=white" />
+</a>
+</p>
+  </br>
+<p align="center">
+  <b> Show some ❤️ love by starring my repositories! </b>
+</p>
