@@ -56,7 +56,7 @@
   <a href="https://www.linkedin.com/in/saipraveen13/"><img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a>
   <a href="mailto:saikatta07@gmail.com"><img src="https://img.icons8.com/color/48/000000/gmail.png"/></a>
   <a href="https://github.com/saipraveen13"><img src="https://img.icons8.com/ios-glyphs/48/000000/github.png"/></a>
-  <a href="https://github.com/@Praveen62839571"><img src="https://img.icons8.com/ios-glyphs/48/000000/twitter.png"/></a>
+  <a href="https://https://x.com/@Praveen62839571"><img src="https://img.icons8.com/ios-glyphs/48/000000/twitter.png"/></a>
 </p>
 
 
