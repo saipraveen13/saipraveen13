@@ -69,6 +69,7 @@
 <img src="https://img.shields.io/badge/-Alteryx%20Designer-0076B6?logo=alteryx&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-Power%20BI-F2C811?logo=powerbi&logoColor=white&style=flat">
 <img src="https://img.shields.io/badge/PyCharm-000000?logo=pycharm&logoColor=white&style=flat" alt="PyCharm Badge"/>
+<img src="https://img.shields.io/badge/-Google%20Colab-F9AB00?logo=googlecolab&logoColor=white&style=flat">
 
 
 
