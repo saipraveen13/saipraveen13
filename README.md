@@ -63,15 +63,18 @@
 <img src="https://img.shields.io/badge/-Matplotlib-11557C?logo=plotly&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-scikit--learn-F7931E?logo=scikitlearn&logoColor=white&style=flat">
 <img src="https://img.shields.io/badge/-Bootstrap-7952B3?logo=bootstrap&logoColor=white&style=flat">
+<img src="https://img.shields.io/badge/-React.js-61DAFB?logo=react&logoColor=white&style=flat">
 
 
 **Tools & Platforms:**  
 <img src="https://img.shields.io/badge/-GitHub-181717?logo=github&logoColor=white&style=flat">&nbsp;
+<img src="https://img.shields.io/badge/-Git-F05032?logo=git&logoColor=white&style=flat">
 <img src="https://img.shields.io/badge/-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-Alteryx%20Designer-0076B6?logo=alteryx&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-Power%20BI-F2C811?logo=powerbi&logoColor=white&style=flat">
 <img src="https://img.shields.io/badge/PyCharm-000000?logo=pycharm&logoColor=white&style=flat" alt="PyCharm Badge"/>
 <img src="https://img.shields.io/badge/-Google%20Colab-F9AB00?logo=googlecolab&logoColor=white&style=flat">
+
 
 
 
