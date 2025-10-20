@@ -14,9 +14,6 @@
 <a href="https://www.hackerrank.com/@22221a0482">
 <img src="https://img.shields.io/badge/HackerRank-2EC866?style=flat&logo=hackerrank&logoColor=white" />
 </a>
-<a href="https://leetcode.com/saipraveen13/">
-  <img src="https://img.shields.io/badge/LeetCode-FFA116?style=flat&logo=leetcode&logoColor=white" alt="LeetCode" />
-</a>
 <a href="https://github.com/saipraveen13">
   <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub" />
 </a>
@@ -44,8 +41,6 @@
 
 **Languages:**  
 <img src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white&style=flat">&nbsp;
-<img src="https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white&style=flat">&nbsp;
-<img src="https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-R-276DC3?logo=r&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=000000&style=flat">&nbsp;
 
