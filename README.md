@@ -65,6 +65,7 @@
 <img src="https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white&style=flat"> 
 <img src="https://img.shields.io/badge/-Seaborn-4C72B0?logo=seaborn&logoColor=white&style=flat"> 
 <img src="https://img.shields.io/badge/-Matplotlib-11557C?logo=plotly&logoColor=white&style=flat"> 
+<img src="https://img.shields.io/badge/-Plotly-3F4F75?logo=plotly&logoColor=white&style=flat">&nbsp;
 <img src="https://img.shields.io/badge/-scikit--learn-F7931E?logo=scikitlearn&logoColor=white&style=flat">
 
 
