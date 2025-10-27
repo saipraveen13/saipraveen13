@@ -49,6 +49,7 @@
 **Frameworks:**  
 <img src="https://img.shields.io/badge/-Bootstrap-7952B3?logo=bootstrap&logoColor=white&style=flat"> 
 <img src="https://img.shields.io/badge/-React.js-61DAFB?logo=react&logoColor=white&style=flat"> 
+<img src="https://img.shields.io/badge/-Express.js-000000?logo=express&logoColor=white&style=flat">
 <img src="https://img.shields.io/badge/-Tailwind_CSS-38B2AC?logo=tailwindcss&logoColor=white&style=flat">
 
 **Libraries:**  
