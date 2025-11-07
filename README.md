@@ -69,6 +69,11 @@
 <img src="https://img.shields.io/badge/-Power%20BI-F2C811?logo=powerbi&logoColor=white&style=flat">
 <img src="https://img.shields.io/badge/PyCharm-000000?logo=pycharm&logoColor=white&style=flat" alt="PyCharm Badge"/>
 <img src="https://img.shields.io/badge/-Google%20Colab-F9AB00?logo=googlecolab&logoColor=white&style=flat">
+<img src="https://img.shields.io/badge/-Thunder%20Client-1E90FF?logo=thunderstore&logoColor=white&style=flat"> 
+
+**API:**
+
+<img src="https://img.shields.io/badge/-RESTful%20API-FF6C37?logo=api&logoColor=white&style=flat"> 
 
 -----------------------------------------------------------
 
